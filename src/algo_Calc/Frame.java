@@ -1,10 +1,17 @@
 package algo_Calc;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Frame {
 
@@ -14,14 +21,12 @@ public class Frame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame window = new Frame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		EventQueue.invokeLater(() -> {
+			try {
+				Frame window = new Frame();
+				window.frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 	}
@@ -38,11 +43,21 @@ public class Frame {
 	 */
 	private void initialize() {
 		Sortingss obj = new Sortingss();
-		frame = new JFrame();
-		frame.setBounds(100, 100, 456, 324);
+		frame = new JFrame("Kalkulator Algoritma Pengurutan");
+		frame.setBounds(100, 100, 500, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
+		// Panel untuk judul
+		JPanel titlePanel = new JPanel();
+		JLabel titleLabel = new JLabel("KALKULATOR ALGORITMA PENGURUTAN");
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		titlePanel.add(titleLabel);
+		
+		// Panel untuk tombol-tombol
+		JPanel buttonPanel = new JPanel(new GridLayout(3, 2, 20, 20));
+		buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
+		// Tambahkan tombol ke panel
 		JButton btnNewButton = new JButton("Bubble Sort");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -50,8 +65,7 @@ public class Frame {
 				frame.setVisible(false);	
 			}
 		});
-		btnNewButton.setBounds(43, 48, 128, 25);
-		frame.getContentPane().add(btnNewButton);
+		buttonPanel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Insertion Sort");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -60,8 +74,7 @@ public class Frame {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(253, 48, 128, 25);
-		frame.getContentPane().add(btnNewButton_1);
+		buttonPanel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Selection Sort");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -70,8 +83,7 @@ public class Frame {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_2.setBounds(43, 116, 128, 25);
-		frame.getContentPane().add(btnNewButton_2);
+		buttonPanel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Merge Sort");
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -80,8 +92,7 @@ public class Frame {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_3.setBounds(253, 116, 128, 25);
-		frame.getContentPane().add(btnNewButton_3);
+		buttonPanel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Quick Sort");
 		btnNewButton_4.addActionListener(new ActionListener() {
@@ -90,8 +101,7 @@ public class Frame {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_4.setBounds(43, 178, 128, 25);
-		frame.getContentPane().add(btnNewButton_4);
+		buttonPanel.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Max Heap Sort");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -100,7 +110,11 @@ public class Frame {
 				frame.setVisible(false);
 			}
 		});
-		btnNewButton_5.setBounds(253, 178, 128, 25);
-		frame.getContentPane().add(btnNewButton_5);
+		buttonPanel.add(btnNewButton_5);
+		
+		// Mengatur layout utama
+		frame.getContentPane().setLayout(new BorderLayout());
+		frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
+		frame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
 	}
 }
